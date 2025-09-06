@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
 
-export default function HomeScreen() {
+export default function ProfileScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
-      <Text style={styles.subtitle}>This is your main dashboard.</Text>
+      <Text style={styles.title}>Profile</Text>
+      <Text style={styles.subtitle}>Your account details will appear here.</Text>
     </View>
   );
 }

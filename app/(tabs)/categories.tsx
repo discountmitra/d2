@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
 
-export default function HomeScreen() {
+export default function CategoriesScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
-      <Text style={styles.subtitle}>This is your main dashboard.</Text>
+      <Text style={styles.title}>Categories</Text>
+      <Text style={styles.subtitle}>Browse services here.</Text>
     </View>
   );
 }
