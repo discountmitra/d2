@@ -1,21 +1,22 @@
-import { View, Text, StyleSheet } from "react-native";
-import { Colors, FontSizes, Spacing } from "../../theme";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { Spacing, FontSizes } from "../../theme";
 
 type Props = {
   icon: keyof typeof Ionicons.glyphMap;
   title: string;
-  subtitle: string;
-  color: string;
+  color?: string;
+  onPress?: () => void;
 };
 
-export default function CategoryCard({ icon, title, subtitle, color }: Props) {
+export default function CategoryCard({ icon, title, color = "#4A90E2", onPress }: Props) {
   return (
-    <View style={[styles.card, { backgroundColor: color }]}>
-      <Ionicons name={icon} size={28} color="#fff" style={styles.icon} />
+    <TouchableOpacity style={styles.card} onPress={onPress}>
+      <View style={styles.iconWrapper}>
+        <Ionicons name={icon} size={40} color={color} />
+      </View>
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.subtitle}>{subtitle}</Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -23,25 +24,28 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     margin: Spacing.sm,
+    paddingVertical: Spacing.lg,
     borderRadius: 12,
-    padding: Spacing.md,
-    justifyContent: "center",
+    backgroundColor: "#fff",
     alignItems: "center",
-    minHeight: 120,
+    justifyContent: "center",
+
+    // Shadow for iOS
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+
+    // Elevation for Android
+    elevation: 2,
   },
-  icon: {
+  iconWrapper: {
     marginBottom: Spacing.sm,
   },
   title: {
     fontSize: FontSizes.subtitle,
-    fontWeight: "600",
-    color: "#fff",
-    marginBottom: 2,
+    fontWeight: "500",
     textAlign: "center",
-  },
-  subtitle: {
-    fontSize: FontSizes.input,
-    color: "#f0f0f0",
-    textAlign: "center",
+    color: "#333",
   },
 });

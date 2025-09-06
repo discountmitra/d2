@@ -25,7 +25,6 @@ export default function CategoriesPreview() {
           <CategoryCard
             icon={item.icon as any}
             title={item.title}
-            subtitle={item.subtitle}
             color={item.color}
           />
         )}
