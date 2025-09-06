@@ -26,7 +26,6 @@ export default function CategoriesScreen() {
           <CategoryCard
             icon={item.icon as any}
             title={item.title}
-            subtitle={item.subtitle}
             color={item.color}
           />
         )}

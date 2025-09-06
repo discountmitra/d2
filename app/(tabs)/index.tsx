@@ -3,14 +3,21 @@ import Header from "@/components/home/Header";
 import OfferBanner from "../../components/home/OfferBanner";
 import DealCard from "../../components/home/DealCard";
 import CategoryPreview from "../../components/home/CategoryPreview";
-import ActivityCard from "../../components/home/ActivityCard";
 import { Spacing, Colors } from "../../theme";
+import { useNavigation } from "expo-router";
+import { useEffect } from "react";
+import CustomTopBar from "@/components/home/CustomTopBar";
 
 export default function HomeScreen() {
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false }); // Hide default header
+  }, [navigation]);
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       {/* Greeting + Search */}
-      <Header />
+      <CustomTopBar />
 
       {/* Offer Banner */}
       <OfferBanner />
