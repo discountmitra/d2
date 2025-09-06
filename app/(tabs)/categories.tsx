@@ -1,6 +1,8 @@
 import { View, FlatList, StyleSheet } from "react-native";
 import CategoryCard from "@/components/home/CategoryCard";
 import { Spacing } from "@/theme";
+import { useNavigation } from "expo-router";
+import { useEffect } from "react";
 
 const categories = [
   { id: "1", title: "Food", subtitle: "Restaurants & Takeaway", icon: "fast-food", color: "#FF6B6B" },
@@ -17,7 +19,13 @@ const categories = [
   { id: "12", title: "Clothing", subtitle: "Fashion & Style", icon: "shirt", color: "#C0392B" },
 ];
 
+
 export default function CategoriesScreen() {
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false }); // Hide default header
+  }, [navigation]);
   return (
     <View style={styles.container}>
       <FlatList

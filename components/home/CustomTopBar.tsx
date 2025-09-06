@@ -1,10 +1,13 @@
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Spacing } from "../../theme";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function CustomTopBar() {
+  const insets = useSafeAreaInsets();
+  
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: insets.top + 10 }]}>
       {/* Top Row: Location + Icons */}
       <View style={styles.row}>
         <View style={styles.locationRow}>
@@ -41,7 +44,6 @@ export default function CustomTopBar() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 50, // Account for status bar
     paddingHorizontal: Spacing.md,
     paddingBottom: Spacing.sm,
     backgroundColor: "#fff",
