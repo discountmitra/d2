@@ -1,17 +1,35 @@
-import { View, Text, StyleSheet } from "react-native";
-import { Colors, FontSizes, Spacing } from "../../theme";
+import { ScrollView, StyleSheet } from "react-native";
+import Header from "@/components/home/Header";
+import OfferBanner from "../../components/home/OfferBanner";
+import DealCard from "../../components/home/DealCard";
+import CategoryPreview from "../../components/home/CategoryPreview";
+import ActivityCard from "../../components/home/ActivityCard";
+import { Spacing, Colors } from "../../theme";
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
-      <Text style={styles.subtitle}>This is your main dashboard.</Text>
-    </View>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      {/* Greeting + Search */}
+      <Header />
+
+      {/* Offer Banner */}
+      <OfferBanner />
+
+      {/* Hot Deal (static for now) */}
+      <DealCard />
+
+      {/* Categories Preview (only 4 shown here) */}
+      <CategoryPreview />
+
+      {/* Recent Activity */}
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", alignItems: "center", padding: Spacing.lg, backgroundColor: Colors.background },
-  title: { fontSize: FontSizes.title, fontWeight: "700", marginBottom: Spacing.sm, color: Colors.primary },
-  subtitle: { fontSize: FontSizes.subtitle, color: Colors.secondary },
+  container: {
+    flex: 1,
+    backgroundColor: Colors.background,
+    padding: Spacing.md,
+  },
 });
