@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#F97316", // Orange
     borderRadius: 12,
     padding: Spacing.md,
-    marginBottom: Spacing.md,
+    marginHorizontal: Spacing.md,
+    marginBottom: Spacing.sm,
   },
   title: { fontSize: FontSizes.subtitle, fontWeight: "700", color: "white" },
   subtitle: { color: "white", marginBottom: Spacing.sm },

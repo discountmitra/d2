@@ -45,7 +45,8 @@ export default function CategoriesPreview() {
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: Spacing.lg,
+    marginHorizontal: Spacing.md,
+    marginBottom: Spacing.sm,
   },
   heading: {
     fontSize: FontSizes.subtitle,

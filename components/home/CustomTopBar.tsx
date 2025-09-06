@@ -41,7 +41,9 @@ export default function CustomTopBar() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: Spacing.md,
+    paddingTop: 50, // Account for status bar
+    paddingHorizontal: Spacing.md,
+    paddingBottom: Spacing.sm,
     backgroundColor: "#fff",
   },
   row: {
