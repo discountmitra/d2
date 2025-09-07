@@ -1,8 +1,10 @@
-import { View, FlatList, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet, TextInput } from "react-native";
 import CategoryCard from "@/components/home/CategoryCard";
 import { Spacing } from "@/theme";
 import { useNavigation } from "expo-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const categories = [
   { id: "1", title: "Food", subtitle: "Restaurants & Takeaway", icon: "fast-food", color: "#FF6B6B" },
@@ -22,14 +24,44 @@ const categories = [
 
 export default function CategoriesScreen() {
   const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredCategories, setFilteredCategories] = useState(categories);
 
   useEffect(() => {
     navigation.setOptions({ headerShown: false }); // Hide default header
   }, [navigation]);
+
+  useEffect(() => {
+    if (searchQuery.trim() === "") {
+      setFilteredCategories(categories);
+    } else {
+      const filtered = categories.filter(category =>
+        category.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        category.subtitle.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredCategories(filtered);
+    }
+  }, [searchQuery]);
+
   return (
     <View style={styles.container}>
+      {/* Search Bar */}
+      <View style={[styles.searchContainer, { paddingTop: insets.top + 20 }]}>
+        <View style={styles.searchBar}>
+          <Ionicons name="search-outline" size={18} color="#555" style={{ marginRight: 8 }} />
+          <TextInput
+            placeholder="Search categories..."
+            style={styles.searchInput}
+            placeholderTextColor="#777"
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+          />
+        </View>
+      </View>
+
       <FlatList
-        data={categories}
+        data={filteredCategories}
         renderItem={({ item }) => (
           <CategoryCard
             icon={item.icon as any}
@@ -49,7 +81,25 @@ export default function CategoriesScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#f8fafc",
+  },
+  searchContainer: {
+    paddingHorizontal: Spacing.lg,
+    paddingBottom: Spacing.md,
     backgroundColor: "#fff",
+  },
+  searchBar: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#f1f5f9",
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: 16,
+    color: "#000",
   },
   list: {
     padding: Spacing.md,

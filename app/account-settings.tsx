@@ -39,13 +39,20 @@ export default function AccountSettingsScreen() {
     },
     {
       id: 5,
+      icon: "star-outline",
+      iconColor: "#f59e0b",
+      title: "VIP membership",
+      description: "Upgrade to premium features",
+    },
+    {
+      id: 6,
       icon: "help-circle-outline",
       iconColor: "#f59e0b",
       title: "Help Center",
       description: "Get help and find answers",
     },
     {
-      id: 6,
+      id: 7,
       icon: "settings-outline",
       iconColor: "#6b7280",
       title: "Settings",
